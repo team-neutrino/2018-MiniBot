@@ -12,9 +12,9 @@ public class Drive
 	public Drive()
 	{
 		
-		right1 = new Talon(1);
-		right2 = new Talon(2);
-		left1 = new Talon(3);
+		right1 = new Talon(2);
+		right2 = new Talon(3);
+		left1 = new Talon(1);
 		left2 = new Talon(4);
 		
 	}
