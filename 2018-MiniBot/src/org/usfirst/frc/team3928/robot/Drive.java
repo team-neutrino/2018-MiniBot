@@ -14,8 +14,8 @@ public class Drive
 		
 		right1 = new Talon(2);
 		right2 = new Talon(3);
-		left1 = new Talon(1);
-		left2 = new Talon(4);
+		left1 = new Talon(4);
+		left2 = new Talon(1);
 		
 	}
 	
