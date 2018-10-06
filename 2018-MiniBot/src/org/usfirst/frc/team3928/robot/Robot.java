@@ -72,7 +72,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void teleopPeriodic() 
 	{	
-		if(leftStick.getRawButton(2))
+		if(leftStick.getRawButton(3))
 		{
 			System.out.println(ultrasonic.getRangeInches());
 		}
