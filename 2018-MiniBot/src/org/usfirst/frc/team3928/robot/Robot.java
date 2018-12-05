@@ -10,6 +10,9 @@ package org.usfirst.frc.team3928.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Ultrasonic;
+import edu.wpi.first.wpilibj.Ultrasonic.Unit;
+import edu.wpi.first.wpilibj.hal.PDPJNI;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,7 +27,6 @@ public class Robot extends IterativeRobot
 	private Joystick leftStick;
 	private Joystick rightStick;
 	private Drive drive;
-	private Ultrasonic ultrasonic;
 	private Joystick thrustStick;
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -37,7 +39,6 @@ public class Robot extends IterativeRobot
 		rightStick = new Joystick (2);
 		thrustStick = new Joystick(3);
 		drive = new Drive();
-		ultrasonic = new Ultrasonic(0, 0);
 	}
 
 	/**
@@ -54,9 +55,9 @@ public class Robot extends IterativeRobot
 	@Override
 	public void autonomousInit() 
 	{
-		
+		drive.driveToDistance(50);
 	}
-
+	
 	/**
 	 * This function is called periodically during autonomous.
 	 */
@@ -71,15 +72,14 @@ public class Robot extends IterativeRobot
 	 */
 	@Override
 	public void teleopPeriodic() 
-	{	
-		if(leftStick.getRawButton(3))
-		{
-			System.out.println(ultrasonic.getRangeInches());
-		}
+	{
 		
 		double newPower = (-thrustStick.getZ() + 1) / 2 * 0.8 + 0.2;
-		drive.setRight(rightStick.getY() * newPower);
-		drive.setLeft(leftStick.getY() * newPower);
+		drive.setRight(-rightStick.getY() * newPower);
+		drive.setLeft(-leftStick.getY() * newPower);	
+		SmartDashboard.putNumber("ultrasonic:  ", drive.getUltrasonicValue());
+		SmartDashboard.putNumber("speed limit:  ", newPower);
+
 	}
 
 	/**
