@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot
 	private Joystick rightStick;
 	private Drive drive;
 	private Joystick thrustStick;
+	private PixyCam pixy;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -39,6 +40,7 @@ public class Robot extends IterativeRobot
 		rightStick = new Joystick (2);
 		thrustStick = new Joystick(3);
 		drive = new Drive();
+		pixy = new PixyCam();
 	}
 
 	/**
@@ -79,6 +81,8 @@ public class Robot extends IterativeRobot
 		drive.setLeft(-leftStick.getY() * newPower);	
 		SmartDashboard.putNumber("ultrasonic:  ", drive.getUltrasonicValue());
 		SmartDashboard.putNumber("speed limit:  ", newPower);
+		
+		System.out.println(pixy.getX());
 
 	}
 

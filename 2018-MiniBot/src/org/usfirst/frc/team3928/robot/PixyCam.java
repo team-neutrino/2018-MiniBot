@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3928.robot;
 
+import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.SerialPort;
 
 /**
@@ -27,9 +28,10 @@ public class PixyCam implements Runnable
 	public PixyCam()
 	{
 		pixyConnection = new SerialPort(115200, SerialPort.Port.kMXP);
+	
 		pixyConnection.setReadBufferSize(100);
 		
-		data = getNextDataBlock();
+		data = new int[6];
 		
 		new Thread(this).start();
 	}
@@ -101,7 +103,7 @@ public class PixyCam implements Runnable
 		int[] sendData = new int[6];
 		int current = arrPos + 2;
 		
-		for(int dataPos = 0; dataPos < sendData.length; dataPos++)
+		for(int dataPos = 0; dataPos < sendData.length - 2; dataPos++)
 		{
 			sendData[dataPos] = receivedData[current] << 8 | receivedData[current + 1];
 			current += 2;
